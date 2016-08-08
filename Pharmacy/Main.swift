@@ -30,29 +30,34 @@ struct postStruct {
     let medName : String!
     let medQuantity : String!
     let medCategory : String!
+    let medBox : String!
     
-    init(name: String, quantity: String, category: String) {
+    init(name: String, quantity: String, category: String, box: String) {
         self.medName = name
         self.medQuantity = quantity
         self.medCategory = category
+        self.medBox = box
     }
     init(name: String) {
         self.medName = name
         self.medQuantity = nil
         self.medCategory = nil
+        self.medBox = nil
     }
     
     
     func toAnyObject() -> AnyObject {
         return ["Name": medName,
                 "Quantity": medQuantity,
-                "Category": medCategory]
+                "Category": medCategory,
+                "Box": medBox]
     }
     
 }
 
 
 let databaseRef = FIRDatabase.database().reference()
+var posts = [postStruct]()
 
 
 
@@ -64,16 +69,18 @@ class Main: UIViewController {
 
     
 //MARK: - Outlets
-    @IBOutlet weak var menuBtn: UIButton!
-    @IBOutlet weak var menuView: UIView!
     @IBOutlet weak var searchField: UITextField!
+    @IBOutlet weak var menuBtn: UIButton!
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var listBtn: UIButton!
     
     
 //MARK: - Variables
-    var menuMovementDist : CGFloat = 0
     var menuStatus = 0
-    var posts = [postStruct]()
     
+    var menuBtnPos = CGPoint()
+    var addBtnPos = CGPoint()
+    var listBtnPos = CGPoint()
 
     
     
@@ -99,6 +106,7 @@ class Main: UIViewController {
                     MedName = i.medName
                     MedQuantity = i.medQuantity
                     MedCategory = i.medCategory
+                    MedBox = i.medBox
                     self.performSegueWithIdentifier("MainToMed", sender: self)
                     
                 }))
@@ -117,42 +125,6 @@ class Main: UIViewController {
 
         
     }
-    
-    
-    
-    
-    // Button search
-    @IBAction func searchBtn(sender: AnyObject) {
-        
-        var found = false
-        
-        for i in posts {
-            if searchField.text! == i.medName {
-                let alert = UIAlertController(title: "Нашлось!", message: "\(i.medName)\nКоличество: \(i.medQuantity)", preferredStyle: UIAlertControllerStyle.Alert)
-                alert.addAction(UIAlertAction(title: "ОК", style: UIAlertActionStyle.Cancel, handler: nil))
-                alert.addAction(UIAlertAction(title: "Перейти", style: UIAlertActionStyle.Default, handler: { action in
-                    
-                    MedName = i.medName
-                    MedQuantity = i.medQuantity
-                    MedCategory = i.medCategory
-                    self.performSegueWithIdentifier("MainToMed", sender: self)
-                    
-                }))
-                self.presentViewController(alert, animated: true, completion: nil)
-                found = true
-            }
-        }
-        
-        
-        if found == false {
-            let alert = UIAlertController(title: "Упс!", message: "\(searchField.text!) не нашли", preferredStyle: UIAlertControllerStyle.Alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-            searchField.text = ""
-        }
-        
-    }
-    
     
 
     
@@ -160,19 +132,28 @@ class Main: UIViewController {
 //MARK: - Menu Button
     @IBAction func menuBtn(sender: AnyObject) {
         
+        
         if menuStatus == 0 {
             
-            UIView.animateWithDuration(0.5, animations: {
-                self.menuBtn.center.y = self.menuBtn.center.y - self.menuMovementDist
-                self.menuView.center.y = self.menuView.center.y - self.menuMovementDist
+            UIView.animateWithDuration(1, delay: 0, usingSpringWithDamping: 0.7,  initialSpringVelocity: 10, options: UIViewAnimationOptions.AllowAnimatedContent, animations: { () -> Void in
+                
+                self.addBtn.center = self.addBtnPos
+                self.listBtn.center = self.listBtnPos
+                self.addBtn.alpha = 1
+                self.listBtn.alpha = 1
+                
                 self.menuStatus = 1
                 
-            })
+                }, completion: nil)
+
         } else if menuStatus == 1 {
             
-            UIView.animateWithDuration(0.5, animations: {
-                self.menuBtn.center.y = self.menuBtn.center.y + self.menuMovementDist
-                self.menuView.center.y = self.menuView.center.y + self.menuMovementDist
+            UIView.animateWithDuration(0.7, animations: {
+                self.addBtn.center = self.menuBtnPos
+                self.listBtn.center = self.menuBtnPos
+                self.addBtn.alpha = 0
+                self.listBtn.alpha = 0
+                
                 self.menuStatus = 0
             })
             
@@ -185,36 +166,58 @@ class Main: UIViewController {
     
 //MARK: - Default Functions
     override func viewDidAppear(animated: Bool) {
-        menuMovementDist = menuView.frame.height
+        menuInTheB()
+        postsFill()
+    }
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        menuInTheB()
         self.hideKeyboard()
-        
-        databaseRef.child("Meds List").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
-            
-//            let theTitle = String(snapshot.value!["Name"])
-//            let theQuantity = String(snapshot.value!["Quantity"])
-//            let theCategory = String(snapshot.value!["Category"])
-            
-            
-            let theTitle = snapshot.value!["Name"] as! String
-            let theQuantity = snapshot.value!["Quantity"] as! String
-            let theCategory = snapshot.value!["Category"] as! String
-            
-            
-            self.posts.insert(postStruct(name: theTitle, quantity: theQuantity, category: theCategory), atIndex: 0)
-            print(self.posts)
-        })
-        
-        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
+//MARK: - Functions
+    
+    
+    func postsFill () {
+        posts.removeAll()
+        databaseRef.child("Meds List").queryOrderedByKey().observeEventType(.ChildAdded, withBlock: { snapshot in
+            
+            
+            let theTitle = snapshot.value!["Name"] as! String
+            let theQuantity = snapshot.value!["Quantity"] as! String
+            let theCategory = snapshot.value!["Category"] as! String
+            let theBox = snapshot.value!["Box"] as! String
+            
+            
+            posts.insert(postStruct(name: theTitle, quantity: theQuantity, category: theCategory, box: theBox), atIndex: 0)
+        })
+    }
+    func menuInTheB () {
+        menuBtnPos = menuBtn.center
+        addBtnPos = addBtn.center
+        listBtnPos = listBtn.center
+        
+        addBtn.center = menuBtnPos
+        listBtn.center = menuBtnPos
+        
+        addBtn.alpha = 0
+        listBtn.alpha = 0
+    }
 
 }
 

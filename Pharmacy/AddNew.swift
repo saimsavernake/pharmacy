@@ -29,15 +29,35 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
 //MARK: - Variables
     let medsCategoriesPicker = UIPickerView()
+    var boxColor = ""
+    
+    
     
     
 //MARK: - Outlets
     @IBOutlet weak var name: UITextField!
     @IBOutlet weak var quantity: UITextField!
     @IBOutlet weak var whatFor: UITextField!
+    @IBOutlet weak var boxBtn: UIButton!
+    @IBOutlet weak var addBtn: UIButton!
+    @IBOutlet weak var checkImg: UIImageView!
     
     
     
+    @IBAction func boxBtn(sender: AnyObject) {
+        
+        if boxColor == "Green" {
+            boxBtn.backgroundColor = colorRed
+            boxBtn.titleLabel?.textColor = colorWhite
+            boxColor = "Red"
+        } else {
+            boxBtn.backgroundColor = colorGreen
+            boxBtn.titleLabel?.textColor = colorWhite
+            boxColor = "Green"
+        }
+        fillCheck()
+        
+    }
     
     
     
@@ -45,36 +65,21 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     @IBAction func addBtn(sender: AnyObject) {
         addAlert()
     }
-    
-    func addAlert () {
-        
-        let alert = UIAlertController(title: "Добавлено", message: "\(name.text!)\n\(quantity.text!) шт", preferredStyle: UIAlertControllerStyle.Alert)
-        
-        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: { action in
-            if self.name.text != "" || self.quantity.text != "" {
-                
-                self.post(self.name.text!, medQuantity: self.quantity.text!, medCategory: self.whatFor.text!)
-                
-            }
-            self.performSegueWithIdentifier("AddToMain", sender: self)
-        }))
-        self.presentViewController(alert, animated: true, completion: nil)
-    }
- 
 
     
     
     
     
 //MARK: - Firebase new item setup
-    func post (medName:String, medQuantity:String, medCategory: String) {
+    func post (medName:String, medQuantity:String, medCategory: String, medBox: String) {
         
         let medTitle = medName
         let quantity = medQuantity
         let category = medCategory
-                        
+        let box = medBox
         
-        let set = postStruct(name: medTitle, quantity: quantity, category: category)
+        
+        let set = postStruct(name: medTitle, quantity: quantity, category: category, box: box)
         
         databaseRef.child("Meds List").child(medTitle).setValue(set.toAnyObject())
         
@@ -87,6 +92,8 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        swipe()
+        self.addBtn.enabled = false
         self.hideKeyboard()
         
         
@@ -95,6 +102,9 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         medsCategoriesPicker.dataSource = self
         whatFor.inputView = medsCategoriesPicker
         
+    }
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
     
     
@@ -118,4 +128,71 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         return medsCategories[row]
     }
     
+    
+    func addAlert () {
+        
+        let alert = UIAlertController(title: "Добавлено", message: "\(name.text!)\n\(quantity.text!) шт", preferredStyle: UIAlertControllerStyle.Alert)
+        
+        alert.addAction(UIAlertAction.init(title: "OK", style: UIAlertActionStyle.Cancel, handler: { action in
+            
+            self.post(self.name.text!, medQuantity: self.quantity.text!, medCategory: self.whatFor.text!, medBox: self.boxColor)
+            
+            self.performSegueWithIdentifier("AddToMain", sender: self)
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+    
+
+    
+    
+    func fillCheck () {
+        if self.name.text != "" && self.quantity.text != "" && self.whatFor.text != "" && self.whatFor.text != nil && self.boxColor != "" {
+            addBtn.backgroundColor = colorBlue
+            addBtn.enabled = true
+        } else {
+            addBtn.backgroundColor = colorGrey
+            addBtn.enabled = false
+        }
+    }
+    func swipe () {
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(AddNew.swipeSetup))
+        swipeRight.direction = .Right
+        view.addGestureRecognizer(swipeRight)
+    }
+    func swipeSetup () {
+        self.performSegueWithIdentifier("AddToMain", sender: self)
+    }
+    
+    
+    
+    
+    
+    
+   
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        
 }
