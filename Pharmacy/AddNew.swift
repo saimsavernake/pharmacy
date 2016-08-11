@@ -55,7 +55,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
             boxBtn.titleLabel?.textColor = colorWhite
             boxColor = "Green"
         }
-        fillCheck()
+        //fillCheck()
         
     }
     
@@ -95,6 +95,9 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         swipe()
         self.addBtn.enabled = false
         self.hideKeyboard()
+        self.checkImg.alpha = 0
+        
+        NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(AddNew.fillCheck), userInfo: nil, repeats: true)
         
         
         // For Picker
@@ -149,9 +152,13 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         if self.name.text != "" && self.quantity.text != "" && self.whatFor.text != "" && self.whatFor.text != nil && self.boxColor != "" {
             addBtn.backgroundColor = colorBlue
             addBtn.enabled = true
+            UIView.animateWithDuration(2, delay: 0, usingSpringWithDamping: 0.3,  initialSpringVelocity: 10, options: UIViewAnimationOptions.AllowAnimatedContent, animations: { () -> Void in
+                self.checkImg.alpha = 1
+                }, completion: nil)
         } else {
             addBtn.backgroundColor = colorGrey
             addBtn.enabled = false
+            self.checkImg.alpha = 0
         }
     }
     func swipe () {

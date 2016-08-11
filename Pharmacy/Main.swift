@@ -81,7 +81,6 @@ class Main: UIViewController {
     var menuBtnPos = CGPoint()
     var addBtnPos = CGPoint()
     var listBtnPos = CGPoint()
-
     
     
     
