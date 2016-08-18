@@ -183,6 +183,11 @@ class Main: UIViewController {
         super.viewDidLoad()
         menuInTheB()
         self.hideKeyboard()
+        
+        roundCornersBtn(menuBtn)
+        roundCornersBtn(addBtn)
+        roundCornersBtn(listBtn)
+        
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

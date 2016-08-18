@@ -250,6 +250,7 @@ class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         medsCategoriesPicker.delegate = self
         medsCategoriesPicker.dataSource = self
         
+        // Setting up the name box
         medName.text = " \(MedName)"
         medQuantity.text = "\(MedQuantity) шт"
         medCategory.text = " \(MedCategory)"
@@ -258,6 +259,15 @@ class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         } else if MedBox == "Red" {
             nameView.backgroundColor = colorRed
         }
+        
+        // Round corners
+        roundCornersBtn(menuBtn)
+        roundCornersBtn(nameBtn)
+        roundCornersBtn(quantityBtn)
+        roundCornersBtn(categoryBtn)
+        roundCornersBtn(boxBtn)
+        roundCornersBtn(deleteBtn)
+        bgMedsCategoriesPicker.layer.cornerRadius = 15.0
     }
     override func prefersStatusBarHidden() -> Bool {
         return true

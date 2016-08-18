@@ -582,7 +582,7 @@
                                         <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
                                     </pickerView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.70053879310344824" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="Rcv-op-kaS" firstAttribute="height" secondItem="uMy-wl-Fkj" secondAttribute="height" id="HMI-Jy-ag0"/>
                                     <constraint firstItem="Rcv-op-kaS" firstAttribute="centerY" secondItem="uMy-wl-Fkj" secondAttribute="centerY" id="THz-Jv-gmy"/>

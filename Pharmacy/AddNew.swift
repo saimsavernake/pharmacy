@@ -103,6 +103,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         medsCategoriesPicker.dataSource = self
         whatFor.inputView = medsCategoriesPicker
         
+        roundCornersBtn(addBtn)
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
