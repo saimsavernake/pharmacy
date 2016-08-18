@@ -76,15 +76,15 @@ class ListOfCategoriesPage : UIViewController, UITableViewDataSource, UITableVie
     }
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(searchActive) {
-            var smth = [String]()
+            var tempArray = [String]()
             for fc in filteredCategoriesArray {
                 for p in posts {
                     if fc == p.medCategory {
-                        smth.append(p.medName)
+                        tempArray.append(p.medName)
                     }
                 }
             }
-            filteredMedsArray = smth
+            filteredMedsArray = tempArray
             return filteredMedsArray.count
         } else {
             return medsArray.count
