@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B01C4E11D65BD19008D081F /* ListOfCategoriesPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B01C4E01D65BD19008D081F /* ListOfCategoriesPage.swift */; };
 		8B0E017B1D50842D008F8DC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0E017A1D50842D008F8DC0 /* AppDelegate.swift */; };
 		8B0E017D1D50842D008F8DC0 /* Main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0E017C1D50842D008F8DC0 /* Main.swift */; };
 		8B0E01801D50842D008F8DC0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0E017E1D50842D008F8DC0 /* Main.storyboard */; };
 		8B0E01821D50842D008F8DC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B0E01811D50842D008F8DC0 /* Assets.xcassets */; };
 		8B0E01851D50842D008F8DC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B0E01831D50842D008F8DC0 /* LaunchScreen.storyboard */; };
 		8B0E018D1D509607008F8DC0 /* AddNew.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0E018C1D509607008F8DC0 /* AddNew.swift */; };
-		8B2B0CD31D56ACCB009BDF34 /* ListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B0CD21D56ACCB009BDF34 /* ListPage.swift */; };
+		8B2B0CD31D56ACCB009BDF34 /* ListOfMedsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2B0CD21D56ACCB009BDF34 /* ListOfMedsPage.swift */; };
 		8B4803231D586903007010DB /* Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B4803221D586903007010DB /* Support.swift */; };
 		8BC332621D50C1550091F081 /* MedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC332611D50C1550091F081 /* MedPage.swift */; };
 		8BD380271D5103D300E0A7E7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8BD380261D5103D300E0A7E7 /* GoogleService-Info.plist */; };
@@ -24,6 +25,7 @@
 		08689C9A0B0D1986172BEF04 /* libPods-Pharmacy.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Pharmacy.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB1E05E03B36F6F27DEA091 /* Pods-Pharmacy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.debug.xcconfig"; sourceTree = "<group>"; };
 		6B9EF551B002FA1E42E2493C /* Pods-Pharmacy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pharmacy.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pharmacy/Pods-Pharmacy.release.xcconfig"; sourceTree = "<group>"; };
+		8B01C4E01D65BD19008D081F /* ListOfCategoriesPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfCategoriesPage.swift; sourceTree = "<group>"; };
 		8B0E01771D50842D008F8DC0 /* Pharmacy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pharmacy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B0E017A1D50842D008F8DC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B0E017C1D50842D008F8DC0 /* Main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main.swift; sourceTree = "<group>"; };
@@ -32,7 +34,7 @@
 		8B0E01841D50842D008F8DC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B0E01861D50842D008F8DC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B0E018C1D509607008F8DC0 /* AddNew.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNew.swift; sourceTree = "<group>"; };
-		8B2B0CD21D56ACCB009BDF34 /* ListPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListPage.swift; sourceTree = "<group>"; };
+		8B2B0CD21D56ACCB009BDF34 /* ListOfMedsPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListOfMedsPage.swift; sourceTree = "<group>"; };
 		8B4803221D586903007010DB /* Support.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Support.swift; sourceTree = "<group>"; };
 		8BC332611D50C1550091F081 /* MedPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MedPage.swift; sourceTree = "<group>"; };
 		8BD380261D5103D300E0A7E7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -76,7 +78,8 @@
 				8B0E017C1D50842D008F8DC0 /* Main.swift */,
 				8B0E018C1D509607008F8DC0 /* AddNew.swift */,
 				8BC332611D50C1550091F081 /* MedPage.swift */,
-				8B2B0CD21D56ACCB009BDF34 /* ListPage.swift */,
+				8B2B0CD21D56ACCB009BDF34 /* ListOfMedsPage.swift */,
+				8B01C4E01D65BD19008D081F /* ListOfCategoriesPage.swift */,
 				8B4803221D586903007010DB /* Support.swift */,
 				8B0E017E1D50842D008F8DC0 /* Main.storyboard */,
 				8B0E01811D50842D008F8DC0 /* Assets.xcassets */,
@@ -231,8 +234,9 @@
 				8B0E017B1D50842D008F8DC0 /* AppDelegate.swift in Sources */,
 				8B0E018D1D509607008F8DC0 /* AddNew.swift in Sources */,
 				8BC332621D50C1550091F081 /* MedPage.swift in Sources */,
-				8B2B0CD31D56ACCB009BDF34 /* ListPage.swift in Sources */,
+				8B2B0CD31D56ACCB009BDF34 /* ListOfMedsPage.swift in Sources */,
 				8B4803231D586903007010DB /* Support.swift in Sources */,
+				8B01C4E11D65BD19008D081F /* ListOfCategoriesPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
