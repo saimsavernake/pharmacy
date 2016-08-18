@@ -42,6 +42,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HbK-Y9-6wb" id="bh1-Ll-fqc">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -55,18 +56,18 @@
                         </subviews>
                         <color key="backgroundColor" red="0.81568627449999997" green="0.0078431372550000003" blue="0.1058823529" alpha="0.80000000000000004" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="height" secondItem="fga-ZE-LpJ" secondAttribute="height" id="3gG-ib-0Yw"/>
-                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="width" secondItem="fga-ZE-LpJ" secondAttribute="width" id="5oo-Dv-dHN"/>
+                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="centerX" secondItem="fga-ZE-LpJ" secondAttribute="centerX" id="2hT-Po-Rz2"/>
+                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="height" secondItem="fga-ZE-LpJ" secondAttribute="height" id="6fp-E0-1pi"/>
+                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="centerY" secondItem="fga-ZE-LpJ" secondAttribute="centerY" id="7Ul-PS-KNo"/>
                             <constraint firstItem="d1B-uV-ihG" firstAttribute="width" secondItem="fga-ZE-LpJ" secondAttribute="width" id="9Tc-Si-5Xw"/>
-                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="centerX" secondItem="fga-ZE-LpJ" secondAttribute="centerX" id="AFn-RD-VXN"/>
+                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="width" secondItem="fga-ZE-LpJ" secondAttribute="width" id="DHA-lQ-ynD"/>
+                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="height" secondItem="fga-ZE-LpJ" secondAttribute="height" id="HiQ-OR-oLP"/>
                             <constraint firstItem="d1B-uV-ihG" firstAttribute="centerX" secondItem="fga-ZE-LpJ" secondAttribute="centerX" id="KDy-qq-jY2"/>
                             <constraint firstItem="d1B-uV-ihG" firstAttribute="centerY" secondItem="fga-ZE-LpJ" secondAttribute="centerY" id="QEh-mz-qv4"/>
                             <constraint firstItem="d1B-uV-ihG" firstAttribute="height" secondItem="fga-ZE-LpJ" secondAttribute="height" id="QwU-vZ-cT3"/>
-                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="centerY" secondItem="fga-ZE-LpJ" secondAttribute="centerY" id="W8y-Sb-kC9"/>
-                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="centerX" secondItem="fga-ZE-LpJ" secondAttribute="centerX" id="gRx-XH-Ece"/>
-                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="centerY" secondItem="fga-ZE-LpJ" secondAttribute="centerY" id="hSB-MU-cUY"/>
-                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="width" secondItem="fga-ZE-LpJ" secondAttribute="width" id="j1j-04-OpN"/>
-                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="height" secondItem="fga-ZE-LpJ" secondAttribute="height" id="xIB-0y-Xae"/>
+                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="centerX" secondItem="fga-ZE-LpJ" secondAttribute="centerX" id="TpQ-Qz-CKg"/>
+                            <constraint firstItem="fRm-Uj-zYF" firstAttribute="width" secondItem="fga-ZE-LpJ" secondAttribute="width" id="Umi-Tn-7IV"/>
+                            <constraint firstItem="cm6-Pf-qtZ" firstAttribute="centerY" secondItem="fga-ZE-LpJ" secondAttribute="centerY" id="zRN-Vr-wrJ"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -75,18 +76,18 @@
                                 <exclude reference="d1B-uV-ihG"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="5oo-Dv-dHN"/>
-                                <exclude reference="W8y-Sb-kC9"/>
-                                <exclude reference="gRx-XH-Ece"/>
-                                <exclude reference="xIB-0y-Xae"/>
+                                <exclude reference="DHA-lQ-ynD"/>
+                                <exclude reference="HiQ-OR-oLP"/>
+                                <exclude reference="TpQ-Qz-CKg"/>
+                                <exclude reference="zRN-Vr-wrJ"/>
                                 <exclude reference="9Tc-Si-5Xw"/>
                                 <exclude reference="KDy-qq-jY2"/>
                                 <exclude reference="QEh-mz-qv4"/>
                                 <exclude reference="QwU-vZ-cT3"/>
-                                <exclude reference="3gG-ib-0Yw"/>
-                                <exclude reference="AFn-RD-VXN"/>
-                                <exclude reference="hSB-MU-cUY"/>
-                                <exclude reference="j1j-04-OpN"/>
+                                <exclude reference="2hT-Po-Rz2"/>
+                                <exclude reference="6fp-E0-1pi"/>
+                                <exclude reference="7Ul-PS-KNo"/>
+                                <exclude reference="Umi-Tn-7IV"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -96,18 +97,18 @@
                                 <include reference="d1B-uV-ihG"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="5oo-Dv-dHN"/>
-                                <include reference="W8y-Sb-kC9"/>
-                                <include reference="gRx-XH-Ece"/>
-                                <include reference="xIB-0y-Xae"/>
+                                <include reference="DHA-lQ-ynD"/>
+                                <include reference="HiQ-OR-oLP"/>
+                                <include reference="TpQ-Qz-CKg"/>
+                                <include reference="zRN-Vr-wrJ"/>
                                 <include reference="9Tc-Si-5Xw"/>
                                 <include reference="KDy-qq-jY2"/>
                                 <include reference="QEh-mz-qv4"/>
                                 <include reference="QwU-vZ-cT3"/>
-                                <include reference="3gG-ib-0Yw"/>
-                                <include reference="AFn-RD-VXN"/>
-                                <include reference="hSB-MU-cUY"/>
-                                <include reference="j1j-04-OpN"/>
+                                <include reference="2hT-Po-Rz2"/>
+                                <include reference="6fp-E0-1pi"/>
+                                <include reference="7Ul-PS-KNo"/>
+                                <include reference="Umi-Tn-7IV"/>
                             </mask>
                         </variation>
                     </view>
@@ -156,6 +157,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FuH-Ol-Ywv" id="yrv-gt-P1C">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
@@ -578,20 +580,35 @@
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rcv-op-kaS">
                                         <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
-                                        <variation key="widthClass=compact" fixedFrame="YES">
-                                            <rect key="frame" x="0.0" y="-8" width="380" height="216"/>
-                                        </variation>
                                     </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.49019607840000001" green="0.49019607840000001" blue="0.49019607840000001" alpha="0.58999999999999997" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Rcv-op-kaS" firstAttribute="height" secondItem="uMy-wl-Fkj" secondAttribute="height" id="HMI-Jy-ag0"/>
+                                    <constraint firstItem="Rcv-op-kaS" firstAttribute="centerY" secondItem="uMy-wl-Fkj" secondAttribute="centerY" id="THz-Jv-gmy"/>
+                                    <constraint firstItem="Rcv-op-kaS" firstAttribute="width" secondItem="uMy-wl-Fkj" secondAttribute="width" id="h9m-Di-ZYR"/>
+                                    <constraint firstItem="Rcv-op-kaS" firstAttribute="centerX" secondItem="uMy-wl-Fkj" secondAttribute="centerX" id="t2j-gn-PYV"/>
+                                </constraints>
                                 <variation key="default">
                                     <mask key="subviews">
                                         <exclude reference="Rcv-op-kaS"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <exclude reference="HMI-Jy-ag0"/>
+                                        <exclude reference="THz-Jv-gmy"/>
+                                        <exclude reference="h9m-Di-ZYR"/>
+                                        <exclude reference="t2j-gn-PYV"/>
                                     </mask>
                                 </variation>
                                 <variation key="widthClass=compact">
                                     <mask key="subviews">
                                         <include reference="Rcv-op-kaS"/>
+                                    </mask>
+                                    <mask key="constraints">
+                                        <include reference="HMI-Jy-ag0"/>
+                                        <include reference="THz-Jv-gmy"/>
+                                        <include reference="h9m-Di-ZYR"/>
+                                        <include reference="t2j-gn-PYV"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -699,15 +716,9 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="47" y="11" width="146" height="55"/>
-                                                </variation>
                                             </label>
                                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="fhE-Nu-DFR">
                                                 <rect key="frame" x="-47" y="-14" width="94" height="29"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="73" y="79" width="94" height="29"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="stepper:" destination="gDv-m4-iyH" eventType="valueChanged" id="jdo-Wh-Skg"/>
                                                 </connections>
@@ -715,9 +726,6 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-xb-lI1">
                                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                                 <state key="normal" title="Сохранить"/>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="8" y="148" width="224" height="30"/>
-                                                </variation>
                                                 <connections>
                                                     <action selector="saveQuantity:" destination="gDv-m4-iyH" eventType="touchUpInside" id="lXD-il-XnQ"/>
                                                 </connections>
@@ -1256,6 +1264,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="FcJ-Qn-QGE"/>
         <segue reference="8J3-GM-xfa"/>
-        <segue reference="qdF-I1-6Jx"/>
+        <segue reference="Huc-Xr-Sa9"/>
     </inferredMetricsTieBreakers>
 </document>
