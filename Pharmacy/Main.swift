@@ -109,6 +109,14 @@ class Main: UIViewController {
                     self.performSegueWithIdentifier("MainToMed", sender: self)
                     
                 }))
+//                alert.addAction(UIAlertAction(title: "Съесть одну", style: UIAlertActionStyle.Default, handler: { action in
+//                    
+//                    var newNumber = Int(i.medQuantity)!
+//                    newNumber -= 1
+//                    
+//                    databaseRef.child("Meds List").child(MedName).child("Quantity").setValue(newNumber)
+//                    
+//                }))
                 self.presentViewController(alert, animated: true, completion: nil)
                 found = true
             }

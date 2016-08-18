@@ -24,11 +24,13 @@ var MedBox = String()
 
 
 
-class MedPage: UIViewController {
+class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     
-    //MARK: - Variables
+//MARK: - Variables
     var menuStatus = 0
+    var categoryStatus = 0
+    var newMedCategory = ""
     
     var nameViewPos0 = CGPoint()
     var nameViewPos1 = CGPoint()
@@ -40,7 +42,7 @@ class MedPage: UIViewController {
     var deleteBtnPos = CGPoint()
 
     
-    //MARK: - Outlets
+//MARK: - Outlets
     @IBOutlet weak var nameView: UIView!
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var nameBtn: UIButton!
@@ -48,6 +50,8 @@ class MedPage: UIViewController {
     @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var boxBtn: UIButton!
     @IBOutlet weak var deleteBtn: UIButton!
+    @IBOutlet weak var medsCategoriesPicker: UIPickerView!
+    @IBOutlet weak var bgMedsCategoriesPicker: UIView!
     
     
     //Main
@@ -111,6 +115,7 @@ class MedPage: UIViewController {
         })
         
         //3. Grab the value from the text field, and print it when the user clicks OK.
+        alert.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
             let textField = alert.textFields![0] as UITextField
             let newName = textField.text!
@@ -135,7 +140,50 @@ class MedPage: UIViewController {
     // Category - Main button
     @IBAction func changeCategoryBtn(sender: AnyObject) {
         
-        
+        if categoryStatus == 0 {
+            
+            bgMedsCategoriesPicker.hidden = false
+            UIView.animateWithDuration(0.5, animations: {
+                self.bgMedsCategoriesPicker.alpha = 1
+            })
+            medsCategoriesPicker.selectRow(medsCategories.indexOf(MedCategory)!, inComponent: 0, animated: true)
+            
+            categoryStatus = 1
+            newMedCategory = MedCategory
+            
+        } else if categoryStatus == 1 {
+            
+            UIView.animateWithDuration(0.5, animations: {
+                
+                self.bgMedsCategoriesPicker.alpha = 1
+                
+            })
+            
+            bgMedsCategoriesPicker.hidden = true
+            MedCategory = newMedCategory
+            medCategory.text = MedCategory
+            databaseRef.child("Meds List").child(MedName).child("Category").setValue(MedCategory)
+            
+            UIView.animateWithDuration(0.7, animations: {
+                self.nameBtn.center = self.menuBtnPos
+                self.quantityBtn.center = self.menuBtnPos
+                self.categoryBtn.center = self.menuBtnPos
+                self.boxBtn.center = self.menuBtnPos
+                self.deleteBtn.center = self.menuBtnPos
+                self.nameView.center = self.nameViewPos0
+                
+                self.nameBtn.alpha = 0
+                self.quantityBtn.alpha = 0
+                self.categoryBtn.alpha = 0
+                self.boxBtn.alpha = 0
+                self.deleteBtn.alpha = 0
+                
+                self.menuStatus = 0
+            })
+            
+            categoryStatus = 0
+            
+        }
         
     }
     
@@ -171,7 +219,6 @@ class MedPage: UIViewController {
         }))
         alert.addAction(UIAlertAction(title: "Нет", style: UIAlertActionStyle.Cancel, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
-        
     }
     
     
@@ -194,7 +241,14 @@ class MedPage: UIViewController {
         super.viewDidLoad()
         menuInTheB()
         swipe()
+        tapDisableQuantityChange()
+        tapDisableCategoryChange()
+        bgMedsCategoriesPicker.hidden = true
+        categoryStatus = 0
         
+        // For Picker
+        medsCategoriesPicker.delegate = self
+        medsCategoriesPicker.dataSource = self
         
         medName.text = " \(MedName)"
         medQuantity.text = "\(MedQuantity) шт"
@@ -210,6 +264,28 @@ class MedPage: UIViewController {
     }
 
 
+    
+    
+//MARK: - Picker Functions
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return medsCategories.count
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        newMedCategory = medsCategories[row]
+    }
+    func pickerView(pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let titleData = medsCategories[row]
+        let myTitle = NSAttributedString(string: titleData, attributes: [NSFontAttributeName:UIFont(name: "Helvetica Neue", size: 12.0)!,NSForegroundColorAttributeName:UIColor.whiteColor()])
+        return myTitle
+    }
+    
+    
+    
+    
+//MARK: - Functions
     func swipe () {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(MedPage.swipeSetup))
         swipeRight.direction = .Right
@@ -217,6 +293,22 @@ class MedPage: UIViewController {
     }
     func swipeSetup () {
         self.performSegueWithIdentifier("MedToMain", sender: self)
+    }
+    func tapDisableQuantityChange () {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MedPage.tapDisableQuantityChangeSetup))
+        bgBlurView.addGestureRecognizer(tap)
+    }
+    func tapDisableQuantityChangeSetup () {
+        bgBlurView.hidden = true
+        quantityView.hidden = true
+    }
+    func tapDisableCategoryChange () {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(MedPage.tapDisableCategoryChangeSetup))
+        view.addGestureRecognizer(tap)
+    }
+    func tapDisableCategoryChangeSetup () {
+        bgMedsCategoriesPicker.hidden = true
+        categoryStatus = 0
     }
     func menuInTheB () {
         menuBtnPos = menuBtn.center

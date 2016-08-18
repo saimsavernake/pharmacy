@@ -97,7 +97,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         self.hideKeyboard()
         self.checkImg.alpha = 0
         
-        NSTimer.scheduledTimerWithTimeInterval(5.0, target: self, selector: #selector(AddNew.fillCheck), userInfo: nil, repeats: true)
+        NSTimer.scheduledTimerWithTimeInterval(3.0, target: self, selector: #selector(AddNew.fillCheck), userInfo: nil, repeats: true)
         
         
         // For Picker
