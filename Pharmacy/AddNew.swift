@@ -177,7 +177,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         toolBar.tintColor = colorBlue
         toolBar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: nil, action: #selector(AddNew.doneButtonSetup))
+        let doneButton = UIBarButtonItem(title: "Save", style: .Plain, target: nil, action: #selector(AddNew.doneButtonSetup))
         let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(AddNew.cancelButtonSetup))
         
