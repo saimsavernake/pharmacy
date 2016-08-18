@@ -62,11 +62,33 @@ class ListOfMedsPage: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        MedName = posts[indexPath.row].medName
-        MedCategory = posts[indexPath.row].medCategory
-        MedQuantity = posts[indexPath.row].medQuantity
-        MedBox = posts[indexPath.row].medBox
-
+        var selectedMed = (n: String(), c: String(), q: String(), b: String())
+        
+        if searchActive {
+            for i in posts {
+                if filteredMedsArray[indexPath.row] == i.medName {
+                    selectedMed.n = i.medName
+                    selectedMed.c = i.medCategory
+                    selectedMed.q = i.medQuantity
+                    selectedMed.b = i.medBox
+                }
+            }
+        } else {
+            for i in posts {
+                if medsArray[indexPath.row] == i.medName {
+                    selectedMed.n = i.medName
+                    selectedMed.c = i.medCategory
+                    selectedMed.q = i.medQuantity
+                    selectedMed.b = i.medBox
+                }
+            }
+        }
+        
+        MedName = selectedMed.n
+        MedCategory = selectedMed.c
+        MedQuantity = selectedMed.q
+        MedBox = selectedMed.b
+        
         self.performSegueWithIdentifier("ListToMed", sender: nil)
     }
     
@@ -83,7 +105,7 @@ class ListOfMedsPage: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchActive = false;
-        searchBar.resignFirstResponder()
+        view.endEditing(true)
     }
     
     

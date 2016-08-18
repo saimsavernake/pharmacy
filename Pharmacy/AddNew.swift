@@ -54,9 +54,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
             boxBtn.backgroundColor = colorGreen
             boxBtn.titleLabel?.textColor = colorWhite
             boxColor = "Green"
-        }
-        //fillCheck()
-        
+        }        
     }
     
     

@@ -15,11 +15,11 @@ import FirebaseDatabase
 //Extensions
 extension UIViewController {
     func hideKeyboard() {
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.keyboardOff))
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.hideKeyboardSetup))
         view.addGestureRecognizer(tap)
     }
     
-    func keyboardOff() {
+    func hideKeyboardSetup() {
         view.endEditing(true)
     }
 }
