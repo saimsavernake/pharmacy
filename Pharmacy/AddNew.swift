@@ -102,6 +102,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
         medsCategoriesPicker.delegate = self
         medsCategoriesPicker.dataSource = self
         whatFor.inputView = medsCategoriesPicker
+        toolBar()
         
         roundCornersBtn(addBtn)
     }
@@ -129,6 +130,7 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return medsCategories[row]
     }
+    
     
     
     func addAlert () {
@@ -168,10 +170,28 @@ class AddNew: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
     func swipeSetup () {
         self.performSegueWithIdentifier("AddToMain", sender: self)
     }
-    
-    
-    
-    
+    func toolBar () {
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.Default
+        toolBar.translucent = true
+        toolBar.tintColor = colorBlue
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: .Plain, target: nil, action: #selector(AddNew.doneButtonSetup))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: #selector(AddNew.cancelButtonSetup))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.userInteractionEnabled = true
+        whatFor.inputAccessoryView = toolBar
+    }
+    func doneButtonSetup () {
+        view.endEditing(true)
+    }
+    func cancelButtonSetup () {
+        view.endEditing(true)
+        whatFor.text = nil
+    }
     
     
    

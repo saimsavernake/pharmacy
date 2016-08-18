@@ -20,4 +20,8 @@ let colorWhite = UIColor(red: 255.0/255.0, green: 255.0/255.0, blue: 255.0/255.0
 
 func roundCornersBtn (btn: UIButton) {
     btn.layer.cornerRadius = 10.0
+    btn.layer.shadowColor = UIColor.blackColor().CGColor
+    btn.layer.shadowOffset = CGSizeMake(5, 5)
+    btn.layer.shadowRadius = 10
+    btn.layer.shadowOpacity = 0.5
 }

@@ -30,7 +30,7 @@ class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 //MARK: - Variables
     var menuStatus = 0
     var categoryStatus = 0
-    var newMedCategory = ""
+    var newMedCategory = String()
     
     var nameViewPos0 = CGPoint()
     var nameViewPos1 = CGPoint()
@@ -155,7 +155,7 @@ class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
             
             UIView.animateWithDuration(0.5, animations: {
                 
-                self.bgMedsCategoriesPicker.alpha = 1
+                self.bgMedsCategoriesPicker.alpha = 0
                 
             })
             
@@ -185,6 +185,40 @@ class MedPage: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
             
         }
         
+    }
+    @IBAction func saveButton(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, animations: {
+            self.bgMedsCategoriesPicker.alpha = 0
+        })
+        bgMedsCategoriesPicker.hidden = true
+        MedCategory = newMedCategory
+        medCategory.text = MedCategory
+        databaseRef.child("Meds List").child(MedName).child("Category").setValue(MedCategory)
+        UIView.animateWithDuration(0.7, animations: {
+            self.nameBtn.center = self.menuBtnPos
+            self.quantityBtn.center = self.menuBtnPos
+            self.categoryBtn.center = self.menuBtnPos
+            self.boxBtn.center = self.menuBtnPos
+            self.deleteBtn.center = self.menuBtnPos
+            self.nameView.center = self.nameViewPos0
+            
+            self.nameBtn.alpha = 0
+            self.quantityBtn.alpha = 0
+            self.categoryBtn.alpha = 0
+            self.boxBtn.alpha = 0
+            self.deleteBtn.alpha = 0
+            
+            self.menuStatus = 0
+        })
+        categoryStatus = 0
+    }
+    
+    @IBAction func cancelButton(sender: AnyObject) {
+        UIView.animateWithDuration(0.5, animations: {
+            self.bgMedsCategoriesPicker.alpha = 0
+        })
+        bgMedsCategoriesPicker.hidden = true
+        categoryStatus = 0
     }
     
     
