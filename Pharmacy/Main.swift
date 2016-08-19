@@ -63,7 +63,7 @@ var posts = [postStruct]()
 
 
 
-class Main: UIViewController {
+class Main: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
     
     
 
@@ -73,10 +73,15 @@ class Main: UIViewController {
     @IBOutlet weak var menuBtn: UIButton!
     @IBOutlet weak var addBtn: UIButton!
     @IBOutlet weak var listBtn: UIButton!
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
     
     
 //MARK: - Variables
     var menuStatus = 0
+    var medsArray = [String]()
+    var filteredMedsArray = [String]()
+    var searchActive = false
     
     var menuBtnPos = CGPoint()
     var addBtnPos = CGPoint()
@@ -136,6 +141,129 @@ class Main: UIViewController {
 
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if(searchActive) {
+            return filteredMedsArray.count
+        } else {
+            return 0//medsArray.count
+        }
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
+        if(searchActive){
+            cell.textLabel?.text = filteredMedsArray[indexPath.row]
+            cell.textLabel?.textColor = colorWhite
+        } else {
+            cell.textLabel?.text = ""
+//            cell.textLabel?.text = medsArray[indexPath.row]
+//            cell.textLabel?.textColor = colorWhite
+        }
+        
+        return cell
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        var selectedMed = (n: String(), c: String(), q: String(), b: String())
+        
+        if searchActive {
+            for i in posts {
+                if filteredMedsArray[indexPath.row] == i.medName {
+                    selectedMed.n = i.medName
+                    selectedMed.c = i.medCategory
+                    selectedMed.q = i.medQuantity
+                    selectedMed.b = i.medBox
+                }
+            }
+        } /*else {
+            for i in posts {
+                if medsArray[indexPath.row] == i.medName {
+                    selectedMed.n = i.medName
+                    selectedMed.c = i.medCategory
+                    selectedMed.q = i.medQuantity
+                    selectedMed.b = i.medBox
+                }
+            }
+        }*/
+        
+        MedName = selectedMed.n
+        MedCategory = selectedMed.c
+        MedQuantity = selectedMed.q
+        MedBox = selectedMed.b
+        
+        self.performSegueWithIdentifier("MainToMed", sender: nil)
+    }
+    
+    
+    //MARK: - SearchBar
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchActive = true
+        tableView.hidden = false
+    }
+    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+        searchActive = false
+        tableView.hidden = true
+    }
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchActive = false
+        tableView.hidden = true
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchActive = false
+        tableView.hidden = true
+        view.endEditing(true)
+    }
+    
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredMedsArray = medsArray.filter({  (med) -> Bool in
+            let tmp : NSString = med
+            let range = tmp.rangeOfString(searchText, options: NSStringCompareOptions.CaseInsensitiveSearch)
+            return range.location != NSNotFound
+        })
+        if(filteredMedsArray.count == 0){
+            searchActive = false;
+        } else {
+            searchActive = true;
+        }
+        self.tableView.reloadData()
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 //MARK: - Menu Button
     @IBAction func menuBtn(sender: AnyObject) {
         
@@ -175,6 +303,11 @@ class Main: UIViewController {
     override func viewDidAppear(animated: Bool) {
         menuInTheB()
         postsFill()
+        for i in posts {
+            medsArray.append(i.medName)
+        }
+        self.tableView.reloadData()
+        tableView.hidden = true
     }
     override func prefersStatusBarHidden() -> Bool {
         return true
@@ -183,6 +316,8 @@ class Main: UIViewController {
         super.viewDidLoad()
         menuInTheB()
         self.hideKeyboard()
+        
+        
         
         roundCornersBtn(menuBtn)
         roundCornersBtn(addBtn)
